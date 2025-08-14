@@ -6,7 +6,8 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background: black no-repeat center center fixed;
+  background-size: cover;
   color: white;
   text-align: center;
 }
@@ -14,7 +15,9 @@ body {
 header {
   background: #2c2c2c;
   padding: 10px;
+  margin-bottom: 40px; /* <- AQUI ADICIONA ESPAÇO EMBAIXO DO HEADER */
 }
+
 
 header .logo {
   display: flex;
@@ -31,22 +34,36 @@ header .logo img {
 header .logo h1 {
   font-size: 2rem;
 }
-
 .top-image {
   position: relative;
+  margin-top: 30px; /* Adiciona espaço entre header e imagem */
 }
-
-.top-image img {
-  width: 100%;
+.top-image,
+.modalidades,
+.trofeu {
+   width: 90vw; /* tamanho da imagem */
+  max-width: none;
   display: block;
+  margin: 0 auto 30px auto; /* 30px de espaço embaixo */
+  border-radius: 8px;
 }
 
-.btn-principal {
+.top-image img,
+.modalidades img,
+.trofeu img {
+  width: 90vw; /* imagens um pouco menores */
+  max-width: none;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.btnCadastro {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: red;
+  background: rgb(4, 19, 150);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -58,17 +75,11 @@ header .logo h1 {
 .modalidades {
   position: relative;
 }
-
-.modalidades img {
-  width: 100%;
-  display: block;
-}
-
 .modalidades .botoes {
   position: absolute;
-  bottom: 20px;
+  top: 50%; /* move para o meio da imagem */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%); /* centraliza */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -77,26 +88,86 @@ header .logo h1 {
 .modalidades button {
   background: black;
   border: none;
-  padding: 8px 15px;
+  padding: 20px 40px;       /* Aumenta o tamanho do botão */
   color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
+  font-size: 2.4em;          /* Aumenta o tamanho do texto */
+  font-weight: bold;         /* Deixa o texto mais forte */
+  min-width: 200px;          /* Garante uma largura mínima */
 }
-
 .trofeu {
   background: white;
   color: black;
-  padding: 20px;
+  padding: 30px 20px 0 20px; /* topo com espaço, embaixo zero */
+  border-radius: 8px;
+  text-align: center;
+}
+
+.trofeu p {
+  max-width: 600px;
+  margin: 10px auto;
+  font-size: 1.2em;
 }
 
 .trofeu img {
-  width: 100%;
-  margin-top: 15px;
+  max-width: 100%;
+  margin: 20px auto 0 auto; /* 20px do texto, zero embaixo */
+  border-radius: 8px;
 }
 
-footer {
-  background: black;
-  padding: 15px;
-  font-size: 0.9em;
-  line-height: 1.4;
+.footer-novo {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: #1f1f1f;
+  color: white;
+  padding: 40px 20px;
+  text-align: left;
+}
+
+.footer-novo .coluna {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  margin: 20px;
+}
+
+.footer-novo h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.footer-novo p {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.footer-novo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-novo li {
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+.btn-footer {
+  display: inline-block;
+  background-color: #c90011;
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.btn-footer:hover {
+  background-color: #a8000f;
 }

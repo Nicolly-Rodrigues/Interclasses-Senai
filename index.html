@@ -16,13 +16,13 @@
   </header>
 
   <!-- Primeira imagem -->
-  <section class="top-image">
+  <section class="top-image" data-bg="imgbolas.jpeg">
     <img src="imgbolas.jpeg" alt="Bolas de Futebol e Vôlei">
-    <button class="btn-principal">Realizar inscrição</button>
+    <button id="btnCadastro" class="btnCadastro">Realizar Inscrição</button>
   </section>
 
   <!-- Modalidades -->
-  <section class="modalidades">
+  <section class="modalidades" data-bg="imgmeio.png">
     <img src="imgmeio.png" alt="Jogadores">
     <div class="botoes">
       <button onclick="selecionarModalidade('Futsal')">Futsal</button>
@@ -32,18 +32,35 @@
   </section>
 
   <!-- Troféu -->
-  <section class="trofeu">
-    <p><strong>ATENÇÃO:</strong> SOMENTE ASSOCIADOS DA AAPMF</p>
-    <p>Turmas, organizem-se e formem seus times! Procurem seus professores para maiores informações sobre datas e horários das partidas.</p>
+  <section class="trofeu" data-bg="imgtrofeus.jpeg">
+    <p><strong>ATENÇÃO:</strong> ASSOCIADOS DA AAPM</p>
+    <p>Vantagens: passeios irados, brindes exclusivos, Wi-Fi liberado na escola e outras melhorias que fazem a diferença!</p>
     <img src="imgtrofeus.jpeg" alt="Troféu e bolas">
   </section>
 
-  <footer>
-    <p>Sobre nós<br>
-    Praça Roberto Mange, 30, Brás, São Paulo - SP, 03053-010<br>
-    Telefone: (11) 3322-0050<br>
-    SENAI Gaspar Ricardo Jr. - Todos os direitos reservados</p>
-  </footer>
+  <footer class="footer-novo">
+  <div class="coluna">
+    <h3>Sobre nós</h3>
+    <p>Site desenvolvido por:</p>
+    <ul>
+      <li>👤 Ana Livia Mariano</li>
+      <li>👤 Nicolly Rodrigues</li>
+    </ul>
+  </div>
+
+  <div class="coluna">
+    <h3>Fique por dentro</h3>
+    <p>Verifique o regulamento abaixo:</p>
+    <a href="#" class="btn-footer">Regulamento</a>
+  </div>
+
+  <div class="coluna">
+    <h3>Ficou com alguma dúvida?</h3>
+    <p>Entre em contato conosco:</p>
+    <p>Telefone:(15) 3212-7400</p>
+    <p>Email: senaisorocaba@sp.senai.br</p>
+  </div>
+</footer>
 
   <script src="pag1.js"></script>
 </body>

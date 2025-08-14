@@ -62,27 +62,7 @@
         input[type="submit"]:hover {
             background: #0025a0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 40px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        table th,
-        table td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        table th {
-            background-color: #0025a0;
-            color: white;
-            text-transform: uppercase;
-        }
-        table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+
         .file-upload-container {
             position: relative;
             max-width: 100%;
@@ -157,23 +137,6 @@
         <input type="submit" value="Cadastrar Usuario" id="submit-btn" />
     </form>
 
-    <h2>Lista de Usuario</h2>
-    <table id="usuario">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Email</th>
-                <th>Turma</th>
-                <th>Modalidade</th>
-                <th>Imagem</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Usuários serão inseridos aqui dinamicamente -->
-        </tbody>
-    </table>
-
     <script>
         const apiUrl = 'http://localhost:8000/api/';
 
@@ -196,32 +159,6 @@
                 console.error('Erro ao carregar modalidades:', error);
                 const select = document.getElementById('modalidade_id');
                 select.innerHTML = '<option value="">Erro ao carregar modalidades</option>';
-            }
-        }
-
-        // Buscar usuários e atualizar tabela
-        async function getUsuarios() {
-            try {
-                const response = await fetch(apiUrl + 'usuario/');
-                const usuarios = await response.json();
-
-                const tbody = document.getElementById('usuario').querySelector('tbody');
-                tbody.innerHTML = '';
-
-                usuarios.forEach(usuario => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${usuario.nome}</td>
-                        <td>${usuario.telefone}</td>
-                        <td>${usuario.email}</td>
-                        <td>${usuario.turma}</td>
-                        <td>${usuario.modalidade.nome}</td>
-                        <td>${usuario.imagem ? `<img src="${usuario.imagem}" class="img-redonda" alt="${usuario.nome}">` : ''}</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            } catch (error) {
-                console.error('Erro ao carregar usuários:', error);
             }
         }
 
@@ -268,22 +205,7 @@
                     throw new Error(errorMessage);
                 }
 
-                const usuarioCriado = JSON.parse(responseBody);
-                console.log('Usuário cadastrado com sucesso:', usuarioCriado);
-
-                // Atualizar tabela com a foto redonda
-                const tbody = document.getElementById('usuario').querySelector('tbody');
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${usuarioCriado.nome}</td>
-                    <td>${usuarioCriado.telefone}</td>
-                    <td>${usuarioCriado.email}</td>
-                    <td>${usuarioCriado.turma}</td>
-                    <td>${usuarioCriado.modalidade.nome}</td>
-                    <td>${usuarioCriado.imagem ? `<img src="${usuarioCriado.imagem}" class="img-redonda" alt="${usuarioCriado.nome}">` : ''}</td>
-                `;
-                tbody.appendChild(tr);
-
+                alert('Usuário cadastrado com sucesso!');
                 // Limpar campos
                 document.getElementById('usuario-form').reset();
                 document.getElementById('file-name').textContent = 'Nenhum arquivo selecionado';
@@ -303,15 +225,9 @@
         // Inicializar
         document.addEventListener('DOMContentLoaded', () => {
             getModalidades();
-            getUsuarios();
-
             document.getElementById('usuario-form').addEventListener('submit', criarUsuario);
         });
 
-        // Botão fake para input file
-        document.querySelector('.file-upload-container .fake-btn').addEventListener('click', () => {
-            document.getElementById('imagem').click();
-        });
     </script>
 </body>
 </html>
