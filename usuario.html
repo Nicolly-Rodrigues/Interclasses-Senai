@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro de Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f8;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #0025a0;
+        }
+        form {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #0025a0;
+            outline: none;
+        }
+        input[type="submit"] {
+            background: #0025a0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background: #0025a0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #0025a0;
+            color: white;
+            text-transform: uppercase;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .file-upload-container {
+            position: relative;
+            max-width: 100%;
+            margin-bottom: 16px;
+        }
+        .file-upload-container input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .file-upload-container .fake-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background: #0025a0;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .file-upload-container .fake-btn:hover {
+            background: #2980b9;
+        }
+        .file-upload-container .file-name {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* ADICIONADO: classe para imagem redonda */
+        .img-redonda {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Usuario</h1>
+
+    <form id="usuario-form" enctype="multipart/form-data" novalidate>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="telefone">Telefones:</label>
+        <textarea id="telefone" name="telefone" required></textarea>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="turma">Turma:</label>
+        <input type="text" id="turma" name="turma" required />
+
+        <label for="modalidade_id">Modalidade:</label>
+        <select id="modalidade_id" name="modalidade_id" required>
+            <option value="">Carregando modalidade...</option>
+        </select>
+
+        <label for="imagem">Imagem (opcional):</label>
+        <div class="file-upload-container">
+            <input type="file" id="imagem" name="imagem" accept="image/*" />
+            <div class="fake-btn">Escolher imagem...</div>
+            <div class="file-name" id="file-name">Nenhum arquivo selecionado</div>
+        </div>
+
+        <input type="submit" value="Cadastrar Usuario" id="submit-btn" />
+    </form>
+
+    <h2>Lista de Usuario</h2>
+    <table id="usuario">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Turma</th>
+                <th>Modalidade</th>
+                <th>Imagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Usuários serão inseridos aqui dinamicamente -->
+        </tbody>
+    </table>
+
+    <script>
+        const apiUrl = 'http://localhost:8000/api/';
+
+        // Carregar modalidades
+        async function getModalidades() {
+            try {
+                const response = await fetch(apiUrl + 'modalidades/');
+                const modalidades = await response.json();
+
+                const select = document.getElementById('modalidade_id');
+                select.innerHTML = '<option value="">Selecione uma modalidade</option>';
+
+                modalidades.forEach(modalidade => {
+                    const option = document.createElement('option');
+                    option.value = modalidade.id;
+                    option.textContent = modalidade.nome;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar modalidades:', error);
+                const select = document.getElementById('modalidade_id');
+                select.innerHTML = '<option value="">Erro ao carregar modalidades</option>';
+            }
+        }
+
+        // Buscar usuários e atualizar tabela
+        async function getUsuarios() {
+            try {
+                const response = await fetch(apiUrl + 'usuario/');
+                const usuarios = await response.json();
+
+                const tbody = document.getElementById('usuario').querySelector('tbody');
+                tbody.innerHTML = '';
+
+                usuarios.forEach(usuario => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${usuario.nome}</td>
+                        <td>${usuario.telefone}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.turma}</td>
+                        <td>${usuario.modalidade.nome}</td>
+                        <td>${usuario.imagem ? `<img src="${usuario.imagem}" class="img-redonda" alt="${usuario.nome}">` : ''}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar usuários:', error);
+            }
+        }
+
+        // Enviar dados do formulário para criar usuário
+        async function criarUsuario(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const turma = document.getElementById('turma').value.trim();
+            const modalidadeId = document.getElementById('modalidade_id').value;
+            const imagem = document.getElementById('imagem').files[0];
+
+            if (!nome || !telefone || !email || !turma || !modalidadeId) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            const fd = new FormData();
+            fd.append('nome', nome);
+            fd.append('telefone', telefone);
+            fd.append('email', email);
+            fd.append('turma', turma);
+            fd.append('modalidade_id', modalidadeId);
+            if (imagem) fd.append('imagem', imagem);
+
+            try {
+                const response = await fetch(apiUrl + 'usuario/', {
+                    method: 'POST',
+                    body: fd
+                });
+
+                const responseBody = await response.text();
+
+                if (!response.ok) {
+                    let errorMessage;
+                    try {
+                        const errorData = JSON.parse(responseBody);
+                        errorMessage = JSON.stringify(errorData);
+                    } catch {
+                        errorMessage = responseBody;
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                const usuarioCriado = JSON.parse(responseBody);
+                console.log('Usuário cadastrado com sucesso:', usuarioCriado);
+
+                // Atualizar tabela com a foto redonda
+                const tbody = document.getElementById('usuario').querySelector('tbody');
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${usuarioCriado.nome}</td>
+                    <td>${usuarioCriado.telefone}</td>
+                    <td>${usuarioCriado.email}</td>
+                    <td>${usuarioCriado.turma}</td>
+                    <td>${usuarioCriado.modalidade.nome}</td>
+                    <td>${usuarioCriado.imagem ? `<img src="${usuarioCriado.imagem}" class="img-redonda" alt="${usuarioCriado.nome}">` : ''}</td>
+                `;
+                tbody.appendChild(tr);
+
+                // Limpar campos
+                document.getElementById('usuario-form').reset();
+                document.getElementById('file-name').textContent = 'Nenhum arquivo selecionado';
+
+            } catch (error) {
+                console.error('Erro ao cadastrar usuário:', error);
+                alert('Ocorreu um erro ao cadastrar usuário. Detalhes: ' + error.message);
+            }
+        }
+
+        // Mostrar nome do arquivo selecionado
+        document.getElementById('imagem').addEventListener('change', function () {
+            const fileName = this.files.length > 0 ? this.files[0].name : 'Nenhum arquivo selecionado';
+            document.getElementById('file-name').textContent = fileName;
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            getModalidades();
+            getUsuarios();
+
+            document.getElementById('usuario-form').addEventListener('submit', criarUsuario);
+        });
+
+        // Botão fake para input file
+        document.querySelector('.file-upload-container .fake-btn').addEventListener('click', () => {
+            document.getElementById('imagem').click();
+        });
+    </script>
+</body>
+</html>

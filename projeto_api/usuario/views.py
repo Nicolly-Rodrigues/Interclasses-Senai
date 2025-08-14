@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import generics
 from .models import Modalidade, Usuario
 from .serializers import ModalidadeSerializer, UsuarioSerializer
@@ -13,6 +13,8 @@ class ModalidadeDetail(generics.RetrieveUpdateDestroyAPIView):
 class UsuarioList(generics.ListCreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    parser_classes = (MultiPartParser, FormParser)
 class UsuarioDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    parser_classes = (MultiPartParser, FormParser)
