@@ -47,3 +47,6 @@ window.addEventListener('scroll', () => {
 trocarFundoComScroll();
 mostrarElemento();
 
+document.getElementById("btn-sobre").addEventListener("click", function() {
+  window.location.href = "/usuario.html";
+});

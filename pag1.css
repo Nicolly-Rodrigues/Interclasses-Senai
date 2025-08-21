@@ -34,6 +34,7 @@ header .logo img {
 header .logo h1 {
   font-size: 2rem;
 }
+
 .top-image {
   position: relative;
   margin-top: 30px; /* Adiciona espaço entre header e imagem */
@@ -44,7 +45,7 @@ header .logo h1 {
    width: 90vw; /* tamanho da imagem */
   max-width: none;
   display: block;
-  margin: 0 auto 30px auto; /* 30px de espaço embaixo */
+  margin: 0 auto 30px auto; 
   border-radius: 8px;
 }
 
@@ -226,27 +227,27 @@ header .logo h1 {
    background-color: transparent !important;
 }
 .modalidades .texto-meio h2 {
-  font-size: 2.8em; /* antes era 2.8em */
+  font-size: 2.8em; 
   margin-bottom: 15px;
 }
 
 .modalidades .texto-meio p {
-  font-size: 1.4em; /* antes era 1.4em */
-  line-height: 1.6; /* espaçamento entre linhas */
+  font-size: 1.4em; 
+  line-height: 1.6; 
 }
 
 
 .modalidades {
-  position: relative; /* necessário para que o posicionamento absoluto funcione */
+  position: relative; 
 }
 .modalidades .texto-fim h2 {
-  font-size: 2.8em; /* Aumentado de 2.8em para 3.2em */
+  font-size: 2.8em; 
   margin-bottom: 15px;
 }
 
 .modalidades .texto-fim p {
-  font-size: 1.4em; /* Aumentado de 1.4em para 1.6em */
-  line-height: 1.6; /* Um pouco mais de espaçamento entre as linhas */
+  font-size: 1.4em; 
+  line-height: 1.6; 
 }
 
 .modalidades .texto-fim {
@@ -267,4 +268,76 @@ header .logo h1 {
 .fade-in.aparecer {
   opacity: 1;
   transform: translateY(0);
+}
+.texto-centralizado {
+  position: absolute;
+  top: 20%; /* Ajuste conforme a posição desejada */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5); /* fundo opcional */
+  padding: 10px 20px;
+  border: 2px solid #e63946;
+  border-radius: 8px;
+}
+.trofeu {
+  position: relative; /* permite posicionar elementos absolutos dentro */
+  background: white;
+  color: black;
+  padding: 0; /* zera padding para a imagem ocupar o espaço total */
+  border-radius: 8px;
+  text-align: center;
+  overflow: hidden; /* impede conteúdo de sair da borda */
+}
+
+.texto-sobre-imagem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.6); /* fundo semitransparente para contraste */
+  border-radius: 10px;
+  width: 80%;
+  max-width: 700px;
+}
+
+.texto-sobre-imagem h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.texto-sobre-imagem p {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+.btn-sobre {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 24px;
+  background-color: #e63946;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-sobre:hover {
+  background-color: #e63946;
+}
+
+/* Deixa a imagem em plano de fundo */
+.trofeu img {
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
 }
