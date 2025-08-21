@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cadastro de Usuario</title>
+    <title>Faça sua Inscrição</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f7f8;
+            background-image: url('imgusuario.jpg'); /* coloque o nome da imagem */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+
             color: #333;
             margin: 20px;
         }
         h1 {
             text-align: center;
-            color: #0025a0;
+            color: #e63946;
         }
         form {
             max-width: 600px;
-            background: white;
+            background:rgba(255, 255, 255, 0.95);;
             padding: 20px;
             margin: 0 auto;
             border-radius: 8px;
@@ -45,11 +51,11 @@
         input[type="email"]:focus,
         textarea:focus,
         select:focus {
-            border-color: #0025a0;
+            border-color: #e63946;
             outline: none;
         }
         input[type="submit"] {
-            background: #0025a0;
+            background: #e63946;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -60,7 +66,7 @@
             width: 100%;
         }
         input[type="submit"]:hover {
-            background: #0025a0;
+            background: #e63946;
         }
 
         .file-upload-container {
@@ -80,7 +86,7 @@
             display: inline-block;
             width: 100%;
             padding: 10px;
-            background: #0025a0;
+            background: #e63946;
             color: white;
             text-align: center;
             border-radius: 4px;
@@ -88,7 +94,7 @@
             transition: background 0.3s ease;
         }
         .file-upload-container .fake-btn:hover {
-            background: #2980b9;
+            background: #e63946;
         }
         .file-upload-container .file-name {
             margin-top: 6px;
@@ -107,7 +113,7 @@
     </style>
 </head>
 <body>
-    <h1>Cadastro de Usuario</h1>
+    <h1>Faça sua Inscrição</h1>
 
     <form id="usuario-form" enctype="multipart/form-data" novalidate>
         <label for="nome">Nome:</label>
