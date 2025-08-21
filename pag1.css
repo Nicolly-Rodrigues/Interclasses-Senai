@@ -63,7 +63,7 @@ header .logo h1 {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgb(4, 19, 150);
+  background: #e63946;
   color: white;
   padding: 10px 20px;
   border: none;

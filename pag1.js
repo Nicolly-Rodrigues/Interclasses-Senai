@@ -1,7 +1,7 @@
+document.getElementById("btnCadastro").addEventListener("click", function() {
+  window.location.href = "/usuario.html";
+});
 
-  document.getElementById("btnCadastro").addEventListener("click", function() {
-    window.location.href = "/usuario.html";
-  });
 // JavaScript para trocar fundo conforme scroll
 const secoes = document.querySelectorAll("section");
 const corpo = document.body;
@@ -37,8 +37,13 @@ function mostrarElemento() {
   });
 }
 
-window.addEventListener('scroll', mostrarElemento);
+// Aqui adicionamos o event listener para o scroll chamando as duas funções
+window.addEventListener('scroll', () => {
+  trocarFundoComScroll();
+  mostrarElemento();
+});
 
-// Executa uma vez ao carregar a página
+// Executa uma vez ao carregar a página para inicializar o estado
+trocarFundoComScroll();
 mostrarElemento();
 
