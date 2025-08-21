@@ -24,5 +24,21 @@ function trocarFundoComScroll() {
   });
 }
 
-window.addEventListener("scroll", trocarFundoComScroll);
-window.addEventListener("load", trocarFundoComScroll);
+function mostrarElemento() {
+  const elementos = document.querySelectorAll('.fade-in');
+
+  elementos.forEach(elemento => {
+    const alturaTela = window.innerHeight;
+    const topoElemento = elemento.getBoundingClientRect().top;
+
+    if(topoElemento < alturaTela - 100) {
+      elemento.classList.add('aparecer');
+    }
+  });
+}
+
+window.addEventListener('scroll', mostrarElemento);
+
+// Executa uma vez ao carregar a página
+mostrarElemento();
+

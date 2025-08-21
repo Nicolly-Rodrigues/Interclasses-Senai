@@ -75,27 +75,7 @@ header .logo h1 {
 .modalidades {
   position: relative;
 }
-.modalidades .botoes {
-  position: absolute;
-  top: 50%; /* move para o meio da imagem */
-  left: 50%;
-  transform: translate(-50%, -50%); /* centraliza */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.modalidades button {
-  background: black;
-  border: none;
-  padding: 20px 40px;       /* Aumenta o tamanho do botão */
-  color: white;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 2.4em;          /* Aumenta o tamanho do texto */
-  font-weight: bold;         /* Deixa o texto mais forte */
-  min-width: 200px;          /* Garante uma largura mínima */
-}
 .trofeu {
   background: white;
   color: black;
@@ -170,4 +150,121 @@ header .logo h1 {
 
 .btn-footer:hover {
   background-color: #a8000f;
+}
+.modalidades {
+  position: relative;
+  overflow: hidden;
+  width: 90vw;
+  max-width: none;
+  display: block;
+  margin: 0 auto 30px auto;
+  border-radius: 8px;
+}
+
+.modalidades img {
+  width: 90vw;
+  max-width: none;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Overlay escuro sobre a imagem */
+.modalidades .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-start; /* alinha no topo */
+  justify-content: flex-start;
+  padding: 60px 40px 0 40px; /* top, right, bottom, left */
+  z-index: 2;
+}
+
+/* Texto dentro do overlay */
+.modalidades .texto-modalidade {
+  color: white;
+  text-align: left;
+  max-width: 1000px;
+}
+
+.modalidades .texto-modalidade h2 {
+  font-size: 2.8em;
+  margin-bottom: 10px;
+}
+
+.modalidades .texto-modalidade p {
+  font-size: 1.4em;
+  line-height: 1.5;
+}
+
+.modalidades .destaque {
+  color: #e63946;
+  font-weight: bold;
+}
+/* Texto dentro do overlay */
+.modalidades {
+  position: relative; /* Necessário para posicionar elementos absolutos dentro dela */
+}
+
+.modalidades .texto-meio {
+  position: absolute;       /* Posicionamento flutuante dentro da imagem */
+  top: 50%;                 /* Verticalmente no meio */
+  right: 5%;                /* Um pouco afastado da borda direita */
+  transform: translateY(-50%); /* Corrige o alinhamento vertical */
+  color: white;
+  text-align: left;
+  max-width: 1000px;
+  background-color: rgba(0, 0, 0, 0.5); /* opcional: para melhor legibilidade */
+  padding: 20px;
+  border-radius: 10px;
+   background-color: transparent !important;
+}
+.modalidades .texto-meio h2 {
+  font-size: 2.8em; /* antes era 2.8em */
+  margin-bottom: 15px;
+}
+
+.modalidades .texto-meio p {
+  font-size: 1.4em; /* antes era 1.4em */
+  line-height: 1.6; /* espaçamento entre linhas */
+}
+
+
+.modalidades {
+  position: relative; /* necessário para que o posicionamento absoluto funcione */
+}
+.modalidades .texto-fim h2 {
+  font-size: 2.8em; /* Aumentado de 2.8em para 3.2em */
+  margin-bottom: 15px;
+}
+
+.modalidades .texto-fim p {
+  font-size: 1.4em; /* Aumentado de 1.4em para 1.6em */
+  line-height: 1.6; /* Um pouco mais de espaçamento entre as linhas */
+}
+
+.modalidades .texto-fim {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 90%;
+  max-width: 1000px;
+  color: white;
+  text-align: left;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.aparecer {
+  opacity: 1;
+  transform: translateY(0);
 }
